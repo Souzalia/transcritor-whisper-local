@@ -22,7 +22,7 @@ Este aplicativo permite **transcrever áudios e vídeos para texto em português
 
 - Transcreve **áudios e vídeos** (reuniões, entrevistas, aulas, etc.)
 - Usa **Whisper Large** (maior qualidade)
-- Salva automaticamente o texto em um arquivo `transcricao.txt` na sua pasta transcritor-whisper-local-main
+- Salva automaticamente o texto em um arquivo `transcricao.txt` na sua pasta **transcritor-whisper-local-main**
 
 ---
 
