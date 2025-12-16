@@ -34,18 +34,10 @@ Antes de usar, o computador precisa ter:
 ### 2️⃣ FFmpeg instalado
 O FFmpeg é necessário para ler áudios e vídeos.
 
-1. Acesse:
-   https://www.gyan.dev/ffmpeg/builds/
-2. Baixe:
-   **ffmpeg-release-essentials.zip**
-3. Extraia para:
-   ```
-   C:\ffmpeg
-   ```
-4. Adicione ao PATH:
-   ```
-   C:\ffmpeg\bin
-   ```
+⚠️ Instale o FFmpeg no Windows
+https://ffmpeg.org/download.html
+
+(adicione ao PATH)
 
 Para testar, abra o PowerShell e digite:
 ```powershell
