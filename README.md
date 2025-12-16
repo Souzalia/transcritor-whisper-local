@@ -6,7 +6,7 @@
 
 2️⃣ Aguarde ser exibido: **Modelo carregado**;
 
-3️⃣ Logo após abra o navegador e digite: **http://localhost:8000** para selecionar o arquivo e iniciar a transcrição.
+3️⃣ Logo após abra o navegador e digite: **http://localhost:8000** para selecionar o áudio e iniciar a transcrição.
 
 ---
 
