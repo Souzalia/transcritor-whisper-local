@@ -2,7 +2,7 @@
 
 ## 👉 **Caso não seja a primeira vez em que faça uso do Transcritor então:**
 
-1️⃣ Acesse a pasta **transcritor-whisper-local-main**, clique com o botão direito do mouse sobre **start.ps1** e escolha **Executar com o PowerShell**;
+1️⃣ Acesse sua pasta **transcritor-whisper-local-main**, clique com o botão direito do mouse sobre **start.ps1** e escolha **Executar com o PowerShell**;
 
 2️⃣ Aguarde ser exibido: **Modelo carregado**;
 
@@ -22,8 +22,7 @@ Este aplicativo permite **transcrever áudios e vídeos para texto em português
 
 - Transcreve **áudios e vídeos** (reuniões, entrevistas, aulas, etc.)
 - Usa **Whisper Large** (maior qualidade)
-- Mostra **porcentagem de progresso** durante a transcrição
-- Salva automaticamente o texto em um arquivo `transcricao.txt`
+- Salva automaticamente o texto em um arquivo `transcricao.txt` na sua pasta transcritor-whisper-local-main
 
 ---
 
