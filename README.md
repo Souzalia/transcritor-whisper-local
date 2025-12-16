@@ -114,7 +114,6 @@ A tela do transcritor será exibida.
 3. Clique em **Iniciar Transcrição**
 4. Aguarde a conclusão
 
-Durante o processo, será exibida uma **porcentagem (%)** indicando o andamento.
 
 ---
 
