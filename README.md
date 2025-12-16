@@ -1,6 +1,6 @@
 # 🎙️ Transcritor Web Local de Reuniões (Whisper Large)
 
-👉 ## **Caso não seja a primeira vez em que faça uso do Transcritor então:**
+## 👉 **Caso não seja a primeira vez em que faça uso do Transcritor então:**
 
 1️⃣ Acesse a pasta **transcritor-whisper-local-main**, clique com o botão direito do mouse sobre **start.ps1** e escolha **Executar com o PowerShell**;
 
