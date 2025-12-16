@@ -1,5 +1,7 @@
 # 🎙️ Transcritor Web Local de Reuniões (Whisper Large)
 
+👉 Caso não seja a primeira vez em que faça uso do Transcritor então acesse a pasta transcritor-whisper-local-main, clique com o botão direito do mouse sobre start.ps1 e escolha Executar com o PowerShell.
+
 Este aplicativo permite **transcrever áudios e vídeos para texto em português**, usando o modelo **Whisper Large**, diretamente no seu computador.
 
 👉 **Não usa internet para transcrever** (apenas para baixar o modelo na primeira vez).
