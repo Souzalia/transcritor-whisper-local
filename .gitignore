@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Ambiente virtual
+venv/
+
+# Arquivos gerados
+*.wav
+*.mp3
+*.mp4
+transcricao.txt
