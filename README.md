@@ -57,7 +57,8 @@ Se aparecer a versão, está correto.
 
 ## 📂 Estrutura da pasta
 
-Você recebeu uma pasta parecida com esta:
+Em CODE (canto superior direito) fazer o download zip
+Você receberá uma pasta parecida com esta:
 
 ```
 TranscritorWebLocal
