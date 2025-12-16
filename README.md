@@ -57,7 +57,7 @@ Se aparecer a versão, está correto.
 
 ## 📂 Estrutura da pasta
 
-Em CODE (canto superior direito) fazer o download zip
+Em CODE (canto superior direito) faça o download zip
 Você receberá uma pasta parecida com esta:
 
 ```
