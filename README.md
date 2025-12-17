@@ -3,6 +3,7 @@
 ## 👉 **Caso não seja a primeira vez em que faça uso do Transcritor então:**
 
 1️⃣ Acesse sua pasta **transcritor-whisper-local-main**, clique com o botão direito do mouse sobre **start.ps1** e escolha **Executar com o PowerShell**;
+
 **obs:** No PowerShell, se aparecer a pergunta sobre execuções basta digitar **R**
 
 2️⃣ Aguarde ser exibido: **Modelo carregado**;
