@@ -10,6 +10,10 @@
 
 3️⃣ Logo após abra o navegador e digite: **http://localhost:8000** para selecionar o áudio e iniciar a transcrição.
 
+##Importante!
+
+**Não se esqueça de encerrar o PowerShell com CTRL*C**
+
 ---
 
 Este aplicativo permite **transcrever áudios e vídeos para texto em português**, usando o modelo **Whisper Large**, diretamente no seu computador.
