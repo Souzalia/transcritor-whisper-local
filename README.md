@@ -12,7 +12,7 @@
 
 ## Importante!
 
-**Não se esqueça de encerrar o PowerShell com CTRL*C**
+**Não se esqueça de encerrar o PowerShell com CTRL + C**
 
 ---
 
@@ -139,7 +139,7 @@ Ele fica na **mesma pasta do aplicativo**.
 
 ## Importante!
 
-**Não se esqueça de encerrar o PowerShell com CTRL*C**
+**Não se esqueça de encerrar o PowerShell com CTRL + C**
 
 ---
 
