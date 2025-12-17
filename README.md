@@ -10,7 +10,7 @@
 
 3️⃣ Logo após abra o navegador e digite: **http://localhost:8000** para selecionar o áudio e iniciar a transcrição.
 
-##Importante!##
+## Importante!
 
 **Não se esqueça de encerrar o PowerShell com CTRL*C**
 
@@ -137,7 +137,7 @@ Ele fica na **mesma pasta do aplicativo**.
 
 ---
 
-##Importante!##
+## Importante!
 
 **Não se esqueça de encerrar o PowerShell com CTRL*C**
 
