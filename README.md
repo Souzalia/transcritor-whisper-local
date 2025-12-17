@@ -1,4 +1,4 @@
-# 🎙️ Transcritor Web Local de Reuniões (Whisper Large)
+# 🎙️ Transcritor Web Local (Whisper Large)
 
 ## 👉 **Caso não seja a primeira vez em que faça uso do Transcritor então:**
 
@@ -12,7 +12,7 @@
 
 Este aplicativo permite **transcrever áudios e vídeos para texto em português**, usando o modelo **Whisper Large**, diretamente no seu computador.
 
-👉 **Não usa internet para transcrever** (apenas para baixar o modelo na primeira vez).
+👉 **Não usa internet para transcrever** (apenas para baixar o modelo whisper large na primeira vez).
 👉 **Não tem custo**.
 👉 Funciona pelo **navegador**, de forma simples.
 
@@ -20,8 +20,8 @@ Este aplicativo permite **transcrever áudios e vídeos para texto em português
 
 ## 🧠 O que este aplicativo faz
 
-- Transcreve **áudios e vídeos** (reuniões, entrevistas, aulas, etc.)
-- Usa **Whisper Large** (maior qualidade)
+- Transcreve **áudios e vídeos** 
+- Usa **Whisper Large** (maior qualidade de transcrição)
 - Salva automaticamente o texto em um arquivo `transcricao.txt` na sua pasta **transcritor-whisper-local-main**
 
 ---
