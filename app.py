@@ -8,60 +8,107 @@ import threading
 import time
 import librosa
 
+# ================================
+# APP
+# ================================
 app = FastAPI()
 
 print("Carregando Whisper large...")
 model = whisper.load_model("large")
 print("Modelo carregado.")
 
-# ===== ESTADO GLOBAL =====
+# ================================
+# ESTADO GLOBAL (THREAD-SAFE)
+# ================================
 estado = {
     "percent": 0,
-    "status": "Aguardando",
+    "status": "Aguardando arquivo",
     "resultado": ""
 }
 
-# ===== HTML =====
+estado_lock = threading.Lock()
+
+# ================================
+# HTML
+# ================================
 HTML = """
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
 <title>Transcritor Local</title>
+
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #f5f6fa;
     margin: 40px;
 }
+
 .container {
-    max-width: 600px;
+    max-width: 620px;
     background: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 12px;
 }
+
+h2 {
+    margin-top: 0;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #4a6cf7;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #3b5de3;
+}
+
 .status {
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 15px;
+    color: #444;
 }
+
 .percent {
+    margin-top: 6px;
+    font-size: 24px;
     font-weight: bold;
-    font-size: 18px;
-    margin-top: 5px;
+    color: #4a6cf7;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: inline-block;
 }
+
 pre {
-    background: #eee;
-    padding: 10px;
+    margin-top: 30px;
+    padding: 18px;
+    background: #f1f3f6;
+    border-radius: 8px;
     white-space: pre-wrap;
-    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: none;
+    box-shadow: none;
 }
 </style>
+
 </head>
 <body>
 
 <div class="container">
-<h2>🎙️ Transcritor de Reuniões — Whisper Large</h2>
+<h2>🎙️ Transcritor — Whisper Large</h2>
 
 <input type="file" id="file" accept="audio/*,video/*">
 <br><br>
@@ -108,7 +155,7 @@ function acompanhar() {
             clearInterval(timer);
             document.getElementById("resultado").innerText = data.resultado;
         }
-    }, 500);
+    }, 400);
 }
 </script>
 
@@ -116,23 +163,25 @@ function acompanhar() {
 </html>
 """
 
-# ===== ROTAS =====
+# ================================
+# ROTAS
+# ================================
 @app.get("/", response_class=HTMLResponse)
 def index():
     return HTML
 
 @app.get("/estado")
 def get_estado():
-    return estado
+    with estado_lock:
+        return estado.copy()
 
 @app.post("/transcrever")
 async def transcrever(file: UploadFile = File(...)):
-    # ✔ SALVA O ARQUIVO AQUI (NO CONTEXTO DA REQUEST)
     nome_tmp = f"{uuid.uuid4()}_{file.filename}"
+
     with open(nome_tmp, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # ✔ PASSA APENAS O CAMINHO PARA A THREAD
     threading.Thread(
         target=processar,
         args=(nome_tmp,),
@@ -141,39 +190,56 @@ async def transcrever(file: UploadFile = File(...)):
 
     return JSONResponse({"ok": True})
 
-# ===== PROCESSAMENTO =====
+# ================================
+# PROCESSAMENTO
+# ================================
 def processar(caminho):
     global estado
 
-    estado["percent"] = 0
-    estado["status"] = "Calculando duração..."
-    estado["resultado"] = ""
+    with estado_lock:
+        estado["percent"] = 0
+        estado["status"] = "Calculando duração..."
+        estado["resultado"] = ""
 
-    duracao = librosa.get_duration(path=caminho)
-    estimado = max(duracao * 1.6, 10)
+    duracao_total = librosa.get_duration(path=caminho)
 
-    inicio = time.time()
-    estado["status"] = "Transcrevendo..."
+    with estado_lock:
+        estado["status"] = "Transcrevendo..."
 
-    def atualizar_percentual():
-        while estado["percent"] < 99:
-            elapsed = time.time() - inicio
-            estado["percent"] = min(99, int((elapsed / estimado) * 100))
-            time.sleep(0.5)
+    texto_final = []
+    tempo_processado = 0.0
+    chunk = 30  # segundos
 
-    threading.Thread(
-        target=atualizar_percentual,
-        daemon=True
-    ).start()
+    while tempo_processado < duracao_total:
+        inicio = tempo_processado
+        fim = min(tempo_processado + chunk, duracao_total)
 
-    result = model.transcribe(caminho, language="pt")
+        result = model.transcribe(
+            caminho,
+            language="pt",
+            verbose=False,
+            clip_timestamps=f"{inicio},{fim}"
+        )
 
-    estado["resultado"] = result["text"]
+        if "text" in result:
+            texto_final.append(result["text"])
+
+        tempo_processado = fim
+
+        progresso = int((tempo_processado / duracao_total) * 100)
+
+        with estado_lock:
+            estado["percent"] = min(99, progresso)
+
+    texto_final_str = "".join(texto_final)
+
+    with estado_lock:
+        estado["resultado"] = texto_final_str
+        estado["percent"] = 100
+        estado["status"] = "Transcrição concluída"
 
     with open("transcricao.txt", "w", encoding="utf-8") as f:
-        f.write(result["text"])
+        f.write(texto_final_str)
 
     os.remove(caminho)
 
-    estado["percent"] = 100
-    estado["status"] = "Transcrição concluída"
