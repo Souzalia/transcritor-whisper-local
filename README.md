@@ -1,4 +1,4 @@
-# 🎙️ Transcritor Web Local (Whisper Large)
+# 🎙️ Transcritor Local (Whisper Large)
 
 ## 👉 **Caso não seja a primeira vez em que faça uso do Transcritor então:**
 
